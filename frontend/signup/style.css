@@ -1,0 +1,110 @@
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background-color: rgb(241, 237, 231);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+}
+.container{
+     height:fit-content;
+    width:fit-content;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px 2px rgb(147, 135, 135);
+    position: relative;
+    overflow: hidden;
+    
+    justify-content: space-between;
+}
+#signupFormContainer{
+    /* height: 500px; */
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#signupForm{
+    width:100%;
+}
+label{
+    font-weight: 500;
+    font-size: 20px;
+    margin-left: 15px;
+}
+.form-group{
+   margin: 15px;
+   margin-top: 5px;
+   margin-bottom: 5px;
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 400px;
+}
+input{
+    border: none;
+    border-radius: 7px;
+    width:95%;
+    font-size: 18px;
+    margin-left: 3px;
+    padding: 7px;
+    text-decoration: none;
+    outline: none;
+    background-color: inherit;
+}
+button{
+ border:none;
+ margin-top: 15px;
+ font-size: 22px;
+ width: 400px;
+ padding-top: 7px;
+ padding-bottom: 7px;
+ color: white;
+ background-color: rgb(0, 0, 0);
+}
+#Password{
+    width:85%;
+}
+#eyeIcon{
+    height: 30px;
+    width: 30px;
+    transform: translateY(3px);
+    padding-right: 5px;
+}
+#passwordContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items:start
+}
+p{
+    margin: 0;
+    margin-bottom: 20px;
+    font-weight:500 ;
+    color: rgb(55, 57, 58);
+}
+h2{
+    margin-bottom: 2px;
+}
+#logo{
+   height: 40px;
+   width: auto;
+}
+#header{
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+}
+#loginrefer{
+    margin-top: 10px;
+    
+}
+#confirmError,#emailError,#usernameError,#require{
+        margin-left: 15px;
+    margin-bottom: 2px;
+display: none;
+color:red
+
+}

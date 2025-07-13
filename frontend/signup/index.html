@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <img id="logo"src="./images/Union (1).png">
+    </div>
+    <div class="container">
+        <div id="signupFormContainer">
+            <h2>Create your account</h2>
+            <p>Get started with Taskido today</p>
+        <form id="signupForm">
+            <label for="username">Username</label>
+            <div class="form-group" id="Usernamecontainer">
+                <input type="text" placeholder="JohnDoe" id="username" name="username">
+            </div>
+            <p id="usernameError">*Username cannot be empty</p>
+            <label for="email">Email</label>        
+            <div class="form-group" id="emailcontainer">
+                <input type="email" id="email" placeholder="johndoe@gmail.com" name="email" >
+            </div>
+            <p id="emailError">*Email format is invalid</p>
+            <label for="Password">Password</label>   
+            <div class="form-group" id="passwordContainer"> 
+                <input id="Password" placeholder="admin@1234"  type="password" id="password" name="password" >
+                <img id="eyeIcon" src="./images/close_eye.png" >
+            </div>
+            <p id="require">*Must be atleast 8 charcters long</p>
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="form-group" id="confirmpasscontainer">
+                <input id="confirmpass" name="confirmPassword" >
+            </div>
+            <p id="confirmError">*Passwords do not match</p>
+        </form>
+            <div>
+                <button type="submit" id="signupButton">Signup</button>
+            </div>
+            <div>
+                <p id="loginrefer">Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
