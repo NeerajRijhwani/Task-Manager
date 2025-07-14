@@ -1,1 +1,1 @@
-export const DB_NAME="Task Manager";
+export const DB_NAME="Task_Manager";

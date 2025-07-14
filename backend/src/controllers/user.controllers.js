@@ -6,7 +6,6 @@ import {User} from "../models/user.models.js"
 
 const RegisterUser= AsyncHandler(async (req,res)=>{
     const{username,email,password}=req.body
-
     if(
         [username,email,password].some((field)=>field?.trim==="")
     )
