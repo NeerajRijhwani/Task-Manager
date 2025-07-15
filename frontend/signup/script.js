@@ -9,6 +9,7 @@ let email_Container=document.querySelector("#emailcontainer")
 let confirmPass=document.querySelector("#confirmpass")
 let confirmPass_Container=document.querySelector("#confirmpasscontainer")
 let p=document.querySelectorAll("p")
+let messagedisplay=document.getElementById("error")
 // let password=""
 eyeicon.addEventListener("click",(e)=>{
    if(password.type==="password"){
@@ -72,7 +73,33 @@ if(!flag)
    return
 }
 else{
-   console.log("information are okay");
-   
+      fetch("http://localhost:8000/api/v1/users/register",{
+         method:"POST",
+         headers:{
+            "Content-Type":"application/json"
+         },
+         body:JSON.stringify({
+         username:username.value,
+         email:email.value,
+         password:password.value
+         })
+      })
+      .then(async (res)=>{
+         const data=await res.json();
+         console.log(data.message)
+         messagedisplay.innerText=data.message
+         messagedisplay.style.display="block"
+         messagedisplay.style.color="green"
+         window.location.reload()
+         if(!res.ok)
+            throw new Error(data.message)
+      })
+      .catch((err)=>{
+      console.log("error",err.message);
+      
+      messagedisplay.style.display="block"
+      messagedisplay.style.color="red"
+      messagedisplay.innerText=err.message
+   });
 }
 })
