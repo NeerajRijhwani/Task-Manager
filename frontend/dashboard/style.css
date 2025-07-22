@@ -69,3 +69,67 @@ svg{
     margin-bottom: 0.3em;
 
 }
+.contents{
+    display: flex;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    height: 100vh;
+    color: white;
+    background-color: black;
+    transform: translateY(2.5em);
+}
+#user{
+    transform: translateY(-1.4em);
+    border: 1px solid black;
+    width:5em;
+    border-radius:100%;
+}
+.userimage{
+    height: 3.5em;
+    transform: translateY(-0.7em);
+}
+.user-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin-bottom: 1.5em;
+}
+#username{
+    font-size: 1.6em;
+    font-weight: 400;
+}
+.sidebar-activity{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+}
+/* #dashboard{
+    background-color: white;
+    color: rgb(255, 103, 103);
+} */
+.sidebar-events{
+  width: 90%;
+    font-size: 1.2em;
+    margin: 0.4em;
+    padding: 0.2em;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+.sidebar-events.active{
+    background-color: white;
+    color: rgb(255, 103, 103);
+}
+.sidebar-buttons{
+   transform: translateY(0.15em);
+}
+.sidebar-events:hover{
+    background-color: white;
+    color:  rgb(0, 0, 0);
+}
