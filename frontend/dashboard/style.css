@@ -139,6 +139,8 @@ body{
 .todo{
     width: 30rem;
     height: inherit;
+    display: flex;
+    flex-direction: column;
 }
 .todo-header{
     display: flex;
@@ -162,8 +164,8 @@ body{
 .container{
     display: flex;
     height: 100%;
+    width: 70vw;
     /* background-color: chartreuse; */
-    width: 69vw;
     border: 1px solid black;
 }
 #add-task{
@@ -181,20 +183,7 @@ body{
     color:  rgba(97, 90, 90, 0.483);
     transform: translateY(0.25em);
 }
-/* .addtask{
- font-size: 5rem;
-}
-.addtaskPopup{
-    border: 1px solid black;
-    width:70vw;
-    transform: translateX(20%);
-    transform: translateY(-50vh);
-    display: none;
-}
-#add-task-form{
-    display: flex;
-    flex-direction: column;
-} */
+
  .statuscoloumn{
     border-left: 1px solid black;
     display: flex;
@@ -208,13 +197,14 @@ body{
     align-items: center;
     margin-top: 2%;
     width: 100%;
-    height:35%;
+    height:30%;
+    padding-bottom: 1%;
     border-bottom: 1px solid black;
  }
  .bar{
    position: relative;
    bottom: 10%;
-   transform: scale(0.85);
+   transform: scale(0.83);
  }
  .outer{
    width: 9rem;
@@ -292,3 +282,145 @@ circle{
     padding-left: 1em;
     padding-top: 0.3em;
  }
+ .todo-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+ }
+ .tasks{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius:1em;
+    height:6em;
+    margin: 0.6em;
+    padding: 0.7em;
+    padding-top: 0.4em;
+ }
+ .tasks svg{
+     transform: translateY(0.15em);
+     color: var(--clr);
+ }
+ .task-footer{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+ }
+ .task-description{
+    overflow-y:hidden;
+    height: 2.4em;
+    font-size: 1em;
+ }
+ .priority{
+    color: var(--clr);
+ }
+ .task-status{
+    color: var(--clr);
+ }
+ .completedtasks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+ .completedtasks div{
+    height: 36%;
+ }
+ .addtaskPopup{
+    display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+   top: -3%;
+  background-color:rgba(22, 22, 22, 0.645);
+  display:none;
+    justify-content: center;
+    align-items: center;
+  padding: 1.5em;
+ }
+ .addtasklayout{
+    background-color: white;
+    width: 80%;
+    height: 85%;
+    padding: 2em;
+ }
+ #add-task-form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 1em;
+    
+ }
+ .addtaskheader{
+   font-size: 1.5em;
+   text-decoration: underline;
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 2%;
+ }
+ label{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 1.4em;
+    font-weight: bold;
+ }
+ i{
+    font-size: x-small;
+    transform: translateY(-0.14em);
+ }
+ .priority-selction{
+    width: 1em;
+    height: 1em;
+    transform: translateY(0.14em);
+
+ }
+ form input{
+    width:70%;
+    height: 2em;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding-left: 0.7%;
+ }
+ fieldset{
+    border: none;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+ }
+ .task-description-container{
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    width: 60%;
+ }
+ #task-description{
+    height:100%;
+    width: 100%;
+ }
+ .image-container{
+    display: flex;
+    flex-direction: column;
+     margin-bottom: 1em;
+   
+     width:30%
+ }
+
+  .file-upload input{
+    min-height: 40%;
+    width: 100%;
+    padding-top: 0.4em;
+  }
+  #close-add-task{
+   background-color: inherit;
+   border: none;
+  font-size: large;
+  }
+  #task-submit{
+    width: 10%;
+    background-color: rgb(255, 136, 0);
+    border: 0;
+    font-size: medium;
+    padding: 0.7%;
+    border-radius:0.6em;
+  }

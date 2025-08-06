@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <title>Document</title>
 </head>
 <body>
@@ -74,95 +76,179 @@
           <button id="add-task"><svg  class="icons" id="addicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path></svg>Add Task</button>
         </div>
         <div class="todo-list" id="todo-list">
-          <!-- Task items will be dynamically added here -->
-        </div>
-        </div>
-        <div class="statuscoloumn">
-          <div class="status-header">
-           <svg id="statusicon"class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 2V4H20.0066C20.5552 4 21 4.44495 21 4.9934V21.0066C21 21.5552 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5551 3 21.0066V4.9934C3 4.44476 3.44495 4 3.9934 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM9 16V18H7V16H9ZM9 13V15H7V13H9ZM9 10V12H7V10H9ZM15 4H9V6H15V4Z"></path></svg>
-            <span>Task Status</span>
-          </div>
-          <div class="status">
-            <div class="bar">
-              <div class="outer">
-                <div class="inner">
-                  <h2>0%</h2>
-                </div>
-              
-              </div>
-               <svg  id="bar" xmlns="http://www.w3.org/2000/svg" version="1.1"
-              width="160px" height="160px" >
-            <defs>
-            <linearGradient id="gradient-pending" >
-              <stop offset="0%" stop-color="#e91e63" />
-              <stop offset="100%" stop-color="#673ab7"/>
-              </linearGradient>
-            </defs>
-            <circle style="--clr:green" cx="73" cy="73" r="64.7" stroke-linecap="round"/>
-            </svg>
-              <span  class="statusprogress">• Completed</span>
-            </div>
-            <div class="bar">
-              <div class="outer" id="progressbar-pending">
-                <div class="inner">
-                  <h2>0%</h2>
-                </div>
-              </div>
-              <svg  id="bar" xmlns="http://www.w3.org/2000/svg" version="1.1"
-              width="160px" height="160px" >
-            <defs>
-            <linearGradient id="gradient-pending" >
-              <stop offset="0%" stop-color="#e91e63" />
-              <stop offset="100%" stop-color="#673ab7"/>
-              </linearGradient>
-            </defs>
-            <circle  style="--clr:blue" cx="73" cy="73" r="64.7" stroke-linecap="round"/>
-            </svg>
-              <span class="statusprogress">• In Progress</span>
-            </div>
-            <div class="bar">
-              <div class="outer" id="progressbar-notstarted">
-                <div class="inner">
-                  <h2>0%</h2>
-                </div>
-              </div>
-               <svg  id="bar" xmlns="http://www.w3.org/2000/svg" version="1.1"
-              width="160px" height="160px" >
-            <defs>
-            <linearGradient id="gradient-pending" >
-              <stop offset="0%" stop-color="#e91e63" />
-              <stop offset="100%" stop-color="#673ab7"/>
-              </linearGradient>
-            </defs>
-            <circle style="--clr:red"cx="73" cy="73" r="64.7" stroke-linecap="round"/>
-            </svg>
-              <span class="statusprogress">• Not Started</span>
+          <div class="tasks">
+            <h3 class="task-title">
+              <svg style="--clr:red" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path></svg>
+              Task 1</h3>
+            <p class="task-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi quod, harum velit ipsa laboriosam magni itaque aut commodi at, optio cumque praesentium officiis culpa possimus porro corporis. Ut, nihil repellendus.</p>
+            <div class="task-footer">
+              <span>Priority: <span style="--clr:red" class="priority"> High</span></span>
+             <span>Status:<span style="--clr:red" class="task-status"> Not Started</span></span>
+              <span class="due-date">Created on: 3/06/2025</span>
             </div>
           </div>
-          <div class="completedtask-header">
-            <svg id="completedtaskicon" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4H5V20H19V4ZM3 2.9918C3 2.44405 3.44749 2 3.9985 2H19.9997C20.5519 2 20.9996 2.44772 20.9997 3L21 20.9925C21 21.5489 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5447 3 21.0082V2.9918ZM11.2929 13.1213L15.5355 8.87868L16.9497 10.2929L11.2929 15.9497L7.40381 12.0607L8.81802 10.6464L11.2929 13.1213Z"></path></svg>
-            <span>Completed Tasks</span>
+          <div class="tasks">
+             <h3 class="task-title">
+              <svg style="--clr:blue" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path></svg>
+              Task 2</h3>
+            <p class="task-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores facilis consequatur fugit dolorem aliquam dolore, recusandae placeat dicta animi, ratione qui laudantium quaerat saepe fugiat earum corrupti obcaecati deserunt! Rerum.</p>
+            <div class="task-footer">
+             <span>Priority: <span style="--clr:blue" class="priority"> Moderate</span></span>
+              <span>Status:<span style="--clr:blue" class="task-status"> In Progress</span></span>
+              <span class="due-date">Created on: 3/06/2025</span>
+            </div>
+          </div>
+          <div class="tasks">
+             <h3 class="task-title">
+              <svg style="--clr:blue" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path></svg>
+              Task 3</h3>
+            <p class="task-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat corrupti, voluptatem quia dolore accusamus cumque ex quo nihil voluptate laudantium suscipit, similique quae fuga consequuntur at, nisi aspernatur velit. Repudiandae.</p>
+            <div class="task-footer">
+              <span>Priority: <span style="--clr:green" class="priority"> Low</span></span>
+              <span>Status:<span style="--clr:blue" class="task-status"> In Progress</span></span>
+              <span class="due-date">Created on: 3/06/2025</span>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="statuscoloumn">
+        <div class="status-header">
+         <svg id="statusicon"class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 2V4H20.0066C20.5552 4 21 4.44495 21 4.9934V21.0066C21 21.5552 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5551 3 21.0066V4.9934C3 4.44476 3.44495 4 3.9934 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM9 16V18H7V16H9ZM9 13V15H7V13H9ZM9 10V12H7V10H9ZM15 4H9V6H15V4Z"></path></svg>
+          <span>Task Status</span>
+        </div>
+        <div class="status">
+          <div class="bar">
+            <div class="outer">
+              <div class="inner">
+                <h2>0%</h2>
+              </div>
+            
+            </div>
+             <svg  id="bar" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            width="160px" height="160px" >
+          <defs>
+          <linearGradient id="gradient-pending" >
+            <stop offset="0%" stop-color="#e91e63" />
+            <stop offset="100%" stop-color="#673ab7"/>
+            </linearGradient>
+          </defs>
+          <circle style="--clr:green" cx="73" cy="73" r="64.7" stroke-linecap="round"/>
+          </svg>
+            <span  class="statusprogress">• Completed</span>
+          </div>
+          <div class="bar">
+            <div class="outer" id="progressbar-pending">
+              <div class="inner">
+                <h2>0%</h2>
+              </div>
+            </div>
+            <svg  id="bar" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            width="160px" height="160px" >
+          <defs>
+          <linearGradient id="gradient-pending" >
+            <stop offset="0%" stop-color="#e91e63" />
+            <stop offset="100%" stop-color="#673ab7"/>
+            </linearGradient>
+          </defs>
+          <circle  style="--clr:blue" cx="73" cy="73" r="64.7" stroke-linecap="round"/>
+          </svg>
+            <span class="statusprogress">• In Progress</span>
+          </div>
+          <div class="bar">
+            <div class="outer" id="progressbar-notstarted">
+              <div class="inner">
+                <h2>0%</h2>
+              </div>
+            </div>
+             <svg  id="bar" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            width="160px" height="160px" >
+          <defs>
+          <linearGradient id="gradient-pending" >
+            <stop offset="0%" stop-color="#e91e63" />
+            <stop offset="100%" stop-color="#673ab7"/>
+            </linearGradient>
+          </defs>
+          <circle style="--clr:red"cx="73" cy="73" r="64.7" stroke-linecap="round"/>
+          </svg>
+            <span class="statusprogress">• Not Started</span>
+          </div>
+        </div>
+        <div class="completedtask-header">
+          <svg id="completedtaskicon" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4H5V20H19V4ZM3 2.9918C3 2.44405 3.44749 2 3.9985 2H19.9997C20.5519 2 20.9996 2.44772 20.9997 3L21 20.9925C21 21.5489 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5447 3 21.0082V2.9918ZM11.2929 13.1213L15.5355 8.87868L16.9497 10.2929L11.2929 15.9497L7.40381 12.0607L8.81802 10.6464L11.2929 13.1213Z"></path></svg>
+          <span>Completed Tasks</span>
+        </div>
+        <div class="completedtasks">
+          <div class="tasks">
+             <h3 class="task-title">
+              <svg style="--clr:blue" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path></svg>
+              Task 2</h3>
+            <p class="task-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores facilis consequatur fugit dolorem aliquam dolore, recusandae placeat dicta animi, ratione qui laudantium quaerat saepe fugiat earum corrupti obcaecati deserunt! Rerum.</p>
+            <div class="task-footer">
+             <span>Priority: <span style="--clr:blue" class="priority"> Moderate</span></span>
+              <span>Status:<span style="--clr:blue" class="task-status"> In Progress</span></span>
+              <span class="due-date">Created on: 3/06/2025</span>
+            </div>
+          </div>
+          <div class="tasks">
+             <h3 class="task-title">
+              <svg style="--clr:blue" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path></svg>
+              Task 2</h3>
+            <p class="task-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores facilis consequatur fugit dolorem aliquam dolore, recusandae placeat dicta animi, ratione qui laudantium quaerat saepe fugiat earum corrupti obcaecati deserunt! Rerum.</p>
+            <div class="task-footer">
+             <span>Priority: <span style="--clr:blue" class="priority"> Moderate</span></span>
+              <span>Status:<span style="--clr:blue" class="task-status"> In Progress</span></span>
+              <span class="due-date">Created on: 3/06/2025</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  
-  <!-- <div class="addtaskPopup">
+    </div>
+  </div>
+  <div class="addtaskPopup">
     <div class="addtasklayout">
       <div class="addtaskheader">
-        <span>Add Task</span>
-        <button id="close-add-task"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.7071 6.29289C20.0976 6.68342 20.0976 7.31658 19.7071 7.70711L13.4142 14L19.7071 20.2929C20.0976 20.6834 20.0976 21.3166 19.7071 21.7071C19.3166 22.0976 18.6834 22.0976 18.2929 21.7071L12 15.4142L5.70711 21.7071C5.31658 22.0976 4.68342 22.0976 4.29289 21.7071C3.90237 21.3166 3.90237 20.6834 4.29289 20.2929L10.5858 14L4.29289 7.70711C3.90237 7.31658 3.90237 6.68342 4.29289 6.29289C4.68342 5.90237 5.31658 5.90237 5.70711 6.29289L12 12L18.2929 6.29289C18.6834 5.90237 19.3166 5.90237 19.7071 6.29289Z"></path></svg></button>
+        <span>Add New Task</span>
+        <button id="close-add-task">Go Back</button>
       </div>
       <form id="add-task-form">
         <label for="task-title">Title</label>
-        <input type="text" id="task-title" placeholder="Task Title" required>
-        <label for="task-description">Task Description</label>
-        <textarea id="task-description" placeholder="Task Description"></textarea>
-        <input type="date" id="task-due-date" required>
-        <button type="submit">Done</button>
+        <input type="text" id="task-title" autocomplete="off" >
+        <label>Date</label>
+        <input type="date" id="date" placeholder="Select Date" >
+        <label>Priority</label>
+        <fieldset>
+          <div>
+            <span><i class="fa-solid fa-circle" style="color: #ff0000;"></i> High</span>
+            <input name="priority" class="priority-selction" type="radio" checked></input>
+          </div>
+          <div>
+            <span><i class="fa-solid fa-circle" style="color: #4000ff;"></i> Moderate</span>
+            <input name="priority" class="priority-selction" type="radio"></input>
+          </div>
+           <div>
+            <span><i class="fa-solid fa-circle" style="color: #00ff11;"></i> Low</span>
+            <input name="priority" class="priority-selction" type="radio"></input>
+          </div>
+          </fieldset>
+          <div style="display: flex; justify-content: space-between; height: 12em; ">
+            <div class="task-description-container">
+              <label for="task-description">Task Description</label>
+              <textarea id="task-description" placeholder="Task Description"></textarea>
+            </div>
+              <div class="image-container">
+                <label for="task-image">Upload Image</label>
+                <div class="file-upload">
+                  <!-- <img src="./images/imageuploadicon.jpg" alt="Upload Icon" class="upload-icon">
+                  <span class="upload-text">Browse Image</span> -->
+                   <input type="file"accept="image/*" id="task-image">
+                </div>
+              </div>
+          </div>
+        <button id="task-submit">Done</button>
       </form>
     </div>
-  </div> -->
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

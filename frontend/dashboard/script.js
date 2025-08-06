@@ -15,3 +15,28 @@ sidebar_events.forEach((div)=>{
         div.classList.add("active")
     })
 })
+let addTask=document.querySelector("#add-task")
+let addTaskPopup=document.querySelector(".addtaskPopup")
+let closeTaskPopup=document.querySelector("#close-add-task")
+closeTaskPopup.addEventListener("click",()=>{
+    addTaskPopup.style.display="none"
+})
+addTask.addEventListener("click",()=>{
+addTaskPopup.style.display="flex"
+})
+let task_image=document.querySelector("#task-image");
+// console.log(task_image.files)
+task_image.addEventListener("change",()=>{
+
+    if(task_image.files)
+    {
+        console.log(task_image.value);
+        let icon=document.querySelector(".upload-icon")
+        icon.src=URL.createObjectURL(task_image.files[0])
+    
+    }
+})
+let task_submit=document.querySelector("#task-submit")
+task_submit.addEventListener("click",()=>{
+    window.location.reload()
+})
