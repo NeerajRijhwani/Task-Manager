@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <img id="logo"src="./images/Union (1).png">
+    </div>
+    <div class="container">
+        <div id="LoginFormContainer">
+            <h2>Login</h2>
+            <p>Get started with Taskido today</p>
+        <form id="LoginForm">
+            
+            <label for="email">Email</label>        
+            <div class="form-group" id="emailcontainer">
+                <input type="email" autocomplete="off" id="email" placeholder="johndoe@gmail.com" name="email" >
+            </div>
+            <label for="Password">Password</label>   
+            <div class="form-group" id="passwordContainer"> 
+                <input id="Password" autocomplete="off" placeholder="admin@1234"  type="password" id="password" name="password" >
+            </div>
+           
+        </form>
+            <div>
+                <button type="submit" id="LoginButton">Login</button>
+            </div>
+            <div>
+                <p id="signuprefer"> Don't have an account? <a href="/register">Signup</a></p>
+        </div>
+    </div>
+    </div>
+    <div class="errorPopup">
+        <div class="error">
+            <div class="errorheader">
+                <h3>ERROR</h3>
+                
+                <button id="closeError">
+                    <svg id="close-icon"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,0,0,1)"><path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"></path></svg>
+                </button>
+            </div>
+            <p id="errormessage">Invalid Credentials</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
