@@ -21,23 +21,23 @@
         <form id="signupForm">
             <label for="username">Username</label>
             <div class="form-group" id="Usernamecontainer">
-                <input type="text" placeholder="JohnDoe" id="username" name="username">
+                <input type="text" autocomplete="off" placeholder="JohnDoe" id="username" name="username">
             </div>
             <p id="usernameError">*Username cannot be empty</p>
             <label for="email">Email</label>        
             <div class="form-group" id="emailcontainer">
-                <input type="email" id="email" placeholder="johndoe@gmail.com" name="email" >
+                <input type="email" autocomplete="off" id="email" placeholder="johndoe@gmail.com" name="email" >
             </div>
             <p id="emailError">*Email format is invalid</p>
             <label for="Password">Password</label>   
             <div class="form-group" id="passwordContainer"> 
-                <input id="Password" placeholder="admin@1234"  type="password" id="password" name="password" >
+                <input id="Password" autocomplete="off" placeholder="admin@1234"  type="password" id="password" name="password" >
                 <img id="eyeIcon" src="./images/close_eye.png" >
             </div>
             <p id="require">*Must be atleast 8 charcters long</p>
             <label for="confirmPassword">Confirm Password</label>
             <div class="form-group" id="confirmpasscontainer">
-                <input id="confirmpass" name="confirmPassword" >
+                <input id="confirmpass" autocomplete="off" name="confirmPassword" >
             </div>
             <p id="confirmError">*Passwords do not match</p>
         </form>
@@ -51,6 +51,6 @@
 
 
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

@@ -90,7 +90,7 @@ else{
          messagedisplay.innerText=data.message
          messagedisplay.style.display="block"
          messagedisplay.style.color="green"
-         window.location.reload()
+         window.location.replace("http://localhost:8000/login/")
          if(!res.ok)
             throw new Error(data.message)
       })
