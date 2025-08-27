@@ -30,5 +30,8 @@ app.get("/login",((req,res)=>{
 app.use("/api/v1/users" , userRouter)
 //http://localhost:8000/api/v1/users/register
 
-app.use(errorhandler)
+import todoRouter from "./routes/todo.routes.js"
+app.use("/api/v1/todo", todoRouter)
+
+// app.use(errorhandler)
 export {app}
