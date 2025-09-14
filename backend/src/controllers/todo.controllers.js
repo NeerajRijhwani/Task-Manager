@@ -158,5 +158,35 @@ const GetTasks = AsyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, Tasks, "Tasks Fetched Successfully"));
 });
+const UpdateTaskStatus = AsyncHandler(async (req, res) => {
+  //get task id from params and status from body
+  //validate task id and status
+  //check if task belongs to the logged in user
+  //find the task and update status
+  //return taskstatus updated
 
-export { AddTask, DeleteTask, UpdateTaskDetails, UpdateTaskImage, GetTasks };
+  const task_id = req.params?._id;
+  const { status } = req.body;
+  if (!task_id) {
+    throw new ApiError(400, "Task id is required");
+  }
+  const statusvalues = ["Not Started", "In Progress", "Completed"];
+  if (!statusvalues.includes(status))
+    throw new ApiError(400, "Status is required");
+  const Task = await Todo.findById(task_id);
+  if (!Task || Task.owner !== req.user._id)
+    throw new ApiError(404, "Invalid Task Id");
+  task_id.status = status;
+  await Task.save({validateBeforeSave:false});
+  return res
+    .status(200)
+    .json(new ApiResponse(200, Task, "Task Status Updated Successfully"));
+});
+export {
+  AddTask,
+  DeleteTask,
+  UpdateTaskDetails,
+  UpdateTaskImage,
+  GetTasks,
+  UpdateTaskStatus,
+};

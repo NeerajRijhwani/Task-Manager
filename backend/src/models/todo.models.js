@@ -23,7 +23,7 @@ const todoSchema= new Schema({
     },
     status:{
         type:String,
-        enum:["Not Started","Pending","Completed"],
+        enum:["Not Started","In Progress","Completed"],
         default:"Not Started"
     },
     owner:{

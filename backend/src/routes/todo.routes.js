@@ -5,6 +5,7 @@ import {
   GetTasks,
   UpdateTaskDetails,
   UpdateTaskImage,
+  UpdateTaskStatus,
 } from "../controllers/todo.controllers.js";
 import { verifyJWT } from "../middlewares/Auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
@@ -35,5 +36,6 @@ router.route("/updatetodoimage/:_id").patch(
   UpdateTaskImage
 );
 router.route("/Tasks").get(verifyJWT, GetTasks);
+router.route("/Update-task-status/:_id").patch(verifyJWT, UpdateTaskStatus);
 
 export default router;
