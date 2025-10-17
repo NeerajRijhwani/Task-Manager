@@ -1,7 +1,7 @@
 import mongoose , {Schema} from "mongoose";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
-
+import validator from 'validator';
 const userSchema=new Schema({
     username:{
         type:String,
@@ -30,6 +30,9 @@ const userSchema=new Schema({
 userSchema.pre("save",async function(next){
     if(!this.isModified("password")) return next();
     this.password=await bcrypt.hash(this.password,10)
+    if(!validator.isEmail(this.email)){
+        throw new ApiError(400,"email not valid")
+    }
     next();
 })
 userSchema.methods.IsPasswordCorrect = async function(password){

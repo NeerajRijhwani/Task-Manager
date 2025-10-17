@@ -16,8 +16,8 @@ const AddTask = AsyncHandler(async (req, res) => {
   // create todo object-create db entry
   // return successful message
 
-  const { title, date, priority, description } = req.body;
-  if (title == "" || date == "" || priority == "") {
+  const { project_id,title, date, priority, description,members} = req.body;
+  if (project_id==""||title == "" || date == "" || priority == "") {
     throw new ApiError(400, "ALl fields are Required");
   }
   let taskimageLocalPath;
@@ -30,12 +30,14 @@ const AddTask = AsyncHandler(async (req, res) => {
   }
   const task_image = await uploadOnCloudinary(taskimageLocalPath);
   const Task = await Todo.create({
+    project_id,
     title,
     date,
     priority,
     description,
     taskimage: task_image?.url || "",
     owner: req.user._id,
+    members
   });
   const createdTask = await Todo.findById(Task._id);
   if (!createdTask) {

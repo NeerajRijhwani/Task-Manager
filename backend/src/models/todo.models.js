@@ -1,35 +1,80 @@
-import mongoose , {Schema} from "mongoose";
-
-const todoSchema= new Schema({
-    title:{
-        type:String,
-        required:true,
-        trim:true
+import mongoose, { Schema } from "mongoose";
+import Organization from "./organization.models.js";
+import Project from "./project.model.js"
+const todoSchema = new Schema(
+  {
+    project_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project",
     },
-    date:{
-        type:String,
-        required:true,
+    title: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    priority:{
-        type:String,
-        enum:["High","Moderate","Low"],
-        default:"High"
+    date: {
+      type: String,
+      required: true,
     },
-    description:{
-        type:String,
+    priority: {
+      type: String,
+      enum: ["High", "Moderate", "Low"],
+      default: "High",
     },
-    taskimage:{
-        type:String,
+    description: {
+      type: String,
     },
-    status:{
-        type:String,
-        enum:["Not Started","In Progress","Completed"],
-        default:"Not Started"
+    taskimage: {
+      type: String,
     },
-    owner:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:"User"
+    status: {
+      type: String,
+      enum: ["Not Started", "In Progress", "Completed"],
+      default: "Not Started",
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    members: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      },
+    ],
+  },
+  { timestamps: true }
+);
+todoSchema.pre("save", async function (next) {
+  if(!validator.isDate(this.date)){
+     throw new ApiError(400,"invalid date")
+  }
+  const isverified=false;
+  const organizations = await Organization.find({
+    members: {
+      $in: { user: req.user._id },
+    },
+  });
+  if(!organizations){
+        throw new ApiError(400,"UnAuthorized Access")
     }
-},{timestamps:true})
+  organizations.forEach(async(org) => {
+    const projects=await Project.find(org?._id)
+    if(!projects){
+        throw new ApiError(400,"UnAuthorized Access")
+    }
+    projects.forEach(function(pro){
+      if(pro.members.include({user:req.user?._id})){
+      isverified=true;
+      }
+    })
+  });
+  if(!isverified){
+    throw new ApiError(400,"UnAuthorized Access")
+  }
+ next();
+});
 
-export const Todo = mongoose.model("Todo",todoSchema)
+export const Todo = mongoose.model("Todo", todoSchema);
