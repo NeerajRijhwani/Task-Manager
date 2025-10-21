@@ -4,6 +4,7 @@ const organizationSchema = new Schema(
     name: {
       type: String,
       required: true,
+      unique:true
     },
     description: {
       type: String,
@@ -18,6 +19,7 @@ const organizationSchema = new Schema(
         user: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
+          unique:true
         },
         role: {
           type: String,
