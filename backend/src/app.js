@@ -33,5 +33,11 @@ app.use("/api/v1/users" , userRouter)
 import todoRouter from "./routes/todo.routes.js"
 app.use("/api/v1/todo", todoRouter)
 
+import projectrouter from "./routes/project.routes.js"
+app.use("/api/v1/project",projectrouter)
+import organizationrouter from "./routes/organization.routes.js"
+app.use("/api/v1/organization",organizationrouter)
+
+
 // app.use(errorhandler)
 export {app}
