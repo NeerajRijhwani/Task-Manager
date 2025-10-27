@@ -5,6 +5,7 @@ import { User } from "../models/user.models.js";
 import { Organization } from "../models/organization.models.js";
 import { Project } from "../models/project.model.js";
 import { Todo } from "../models/todo.models.js";
+import { TransactionHandler } from "../utils/TransactionHandler.js";
 const CreateOrganization = AsyncHandler(async (req, res) => {
   // take data from frontend
   // validate it
@@ -34,22 +35,16 @@ const AddOrganizationMember = AsyncHandler(async (req, res) => {
   // check if user and role exists in newmember field
   //check if organization is exists and is updated
   //if not throw error else return response successfully
-  const { orgid, newmember } = req.body;
+  const { newmember } = req.body;
   if (!newmember) {
     throw new ApiError(500, "member cannot be empty");
   }
   const user = await User.findById(newmember?.user);
-  if (
-    !(
-      user &&
-      newmember?.role.includes(["admin", "member"]) &&
-      newmember.length == 2
-    )
-  ) {
+  if (!(user && ["admin", "member"].includes(newmember?.role))) {
     throw new ApiError(400, "User/role does not exist or invalid role");
   }
-  const updated_org = await Organization.findByIdandUpdate(
-    orgid,
+  const updated_org = await Organization.findByIdAndUpdate(
+    req.org._id,
     {
       $push: {
         members: newmember,
@@ -79,13 +74,13 @@ const DeleteOrganizationMember = AsyncHandler(async (req, res) => {
   // check if organization and member exists if not throw error
   //update the organization by deleting member
   // return response successful
-  const { orgid, member_id } = req.body;
+  const { member_id } = req.body;
   const user = await User.findById(member_id);
   if (!user) {
     throw new ApiError(500, "user to be deleted does not exists");
   }
-  const updated_org = await Organization.findByIdandUpdate(
-    orgid,
+  const updated_org = await Organization.findByIdAndUpdate(
+    req.org._id,
     {
       $pull: {
         members: { user: member_id },
@@ -110,19 +105,21 @@ const DeleteOrganizationMember = AsyncHandler(async (req, res) => {
 });
 
 const UpdateMemberRole = AsyncHandler(async (req, res) => {
-  const { orgid, member } = req.body;
-  const callinguserorg = await Organization.findById(orgid);
-  if (!callinguserorg.members.includes[{ user: req.user._id, role: "admin" }]) {
-    throw new ApiError(400, "Unauthorized Request");
-  }
+  const { member } = req.body;
   if (!member) {
-    throw new ApiError(500, "member cannot be empty");
+    throw new ApiError(404, "member cannot be empty");
+  }
+  if (!(member?.user && ["admin", "member"].includes(member?.role))) {
+    throw new ApiError(
+      400,
+      "member does not contain user and role fields or invalid role"
+    );
   }
   const updatedrole = await Organization.updateOne(
-    { _id: orgid, "members.user": member._id },
+    { _id: req.org._id, "members.user": member?.user },
     {
       $set: {
-        "members.$.role": member.role,
+        "members.$.role": member?.role,
       },
     },
     {
@@ -143,50 +140,48 @@ const UpdateMemberRole = AsyncHandler(async (req, res) => {
     );
 });
 
-const DeleteOrganization = AsyncHandler(async (req, res) => {
-  //take orgid from frontend
-  //validate it
-  // make sure user sending this request is admin in that organization
-  // find projects related to orgid
-  //find tasks in the project
-  //delete tasks in the project
-  //delete projects in the organization
-  //delete organization
-  // everything goes correclty returen response successful else throw error
-  const orgid = req.params?._id;
-  const projects = await Project.find({ organization_Id: orgid });
-  if (projects) {
-    projects.forEach(async (project) => {
-      const tasks = await Todo.find({ project_id: project._id });
-      if (!tasks) {
-        return;
-      }
-      tasks.forEach(async (task) => {
-        const deletedtask = await Todo.findByIdAndDelete(task._id);
-        if (!deletedtask) {
-          throw new ApiError(500, "Something went wrong (X Tasks)");
-        }
-      });
-      const deletedproject = await Project.findByIdAndDelete(project._id);
-      if (!deletedproject) {
-        throw new ApiError(500, "Something went wrong (X Project)");
-      }
-    });
-  }
-  const deletedorg = await Organization.findByIdAndDelete(orgid);
-  if (!deletedorg) {
-    throw new ApiError(500, "Something went wrong (X Organization)");
-  }
-  return res
-    .status(200)
-    .json(
-      new ApiResponse(200, deletedorg, "Organization deleted successfully")
+const DeleteOrganization = TransactionHandler(
+  async (req, res, next, session) => {
+    //take orgid from frontend
+    //validate it
+    // make sure user sending this request is admin in that organization
+    // find projects related to orgid
+    //find tasks in the project
+    //delete tasks in the project
+    //delete projects in the organization
+    //delete organization
+    // everything goes correclty returen response successful else throw error
+    const orgid = req.params?._id;
+    const projects = await Project.find({ organization_id: orgid }).session(
+      session
     );
-});
+    const projectids = projects.map((p) => p._id);
+    const deletedprojects = await Project.deleteMany({
+      _id: { $in: { projectids } },
+    }).session(session);
+    const deletedtasks = await Todo.deleteMany({
+      project_id: { $in: { projectids } },
+    }).session(session);
+    const deletedorg =
+      await Organization.findByIdAndDelete(orgid).session(session);
+    if (!deletedorg) {
+      throw new ApiError(500, "Something went wrong (X Organization)");
+    }
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(
+          200,
+          { deletedorg, deletedprojects, deletedtasks },
+          "Organization deleted successfully"
+        )
+      );
+  }
+);
 export {
   CreateOrganization,
   AddOrganizationMember,
   DeleteOrganizationMember,
   UpdateMemberRole,
-  DeleteOrganization
+  DeleteOrganization,
 };
