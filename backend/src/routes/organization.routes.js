@@ -17,7 +17,7 @@ router.route("/createorg").post(verifyJWT, CreateOrganization);
   // add orgmember route is successfull
 router
   .route("/addorgmember/:_id")
-  .post(verifyJWT, verifyAuthorization, AddOrganizationMember);
+  .post(verifyJWT, AddOrganizationMember);
 router
   .route("/deleteorgmember/:_id")
   .delete(verifyJWT, verifyAuthorization, DeleteOrganizationMember);

@@ -79,7 +79,7 @@ const UpdateTaskDetails = AsyncHandler(async (req, res) => {
   //check if details are updated in backend
   //return successful message
 
-  const { title, date, priority, description } = req.body;
+  const { title, date, priority, description,members } = req.body;
   if (title == "" || date == "" || priority == "") {
     throw new ApiError(400, "All fields are Required");
   }
@@ -92,6 +92,7 @@ const UpdateTaskDetails = AsyncHandler(async (req, res) => {
         date,
         priority,
         description,
+        members
       },
     },
     { new: true }

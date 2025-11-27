@@ -5,6 +5,7 @@ import { User } from "../models/user.models.js";
 import { Organization } from "../models/organization.models.js";
 import { Project } from "../models/project.model.js";
 import { Todo } from "../models/todo.models.js";
+import { Invitation } from "../models/invitation.models.js";
 import { TransactionHandler } from "../utils/TransactionHandler.js";
 const CreateOrganization = AsyncHandler(async (req, res) => {
   // take data from frontend
@@ -29,22 +30,32 @@ const CreateOrganization = AsyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, org, "Organization created successfully"));
 });
-const AddOrganizationMember = AsyncHandler(async (req, res) => {
+const AddOrganizationMember = TransactionHandler(async (req, res, next, session) => {
   //take data from frontend
   //check validation
   // check if user and role exists in newmember field
   //check if organization is exists and is updated
   //if not throw error else return response successfully
-  const { newmember } = req.body;
-  if (!newmember) {
-    throw new ApiError(500, "member cannot be empty");
+  const invitation_token = req.params?.token;
+  if (!invitation_token) {
+    throw new ApiError(400, "All fields are required");
   }
-  const user = await User.findById(newmember?.user);
-  if (!(user && ["admin", "member"].includes(newmember?.role))) {
-    throw new ApiError(400, "User/role does not exist or invalid role");
+  const invitation = await Invitation.find({
+    hashedtoken:invitation_token,
+    to: req.user._id,
+    status: "pending",
+  }).session(session);
+  if (!invitation) {
+    throw new ApiError(400, "Invitation Doesnt exists");
+  }
+  invitation.status = "accepted";
+  await invitation.save().session(session);
+  let newmember={
+    user:req.user._id,
+    role:invitation.role
   }
   const updated_org = await Organization.findByIdAndUpdate(
-    req.org._id,
+    invitation.organization_id,
     {
       $push: {
         members: newmember,
@@ -53,9 +64,9 @@ const AddOrganizationMember = AsyncHandler(async (req, res) => {
     {
       new: true,
     }
-  );
+  ).session(session);
   if (!updated_org) {
-    throw new ApiError(500, "unable to add members in organization");
+    throw new ApiError(500, "unable to add in organization");
   }
   return res
     .status(200)
@@ -63,7 +74,7 @@ const AddOrganizationMember = AsyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         updated_org,
-        "member added successfully in the organization"
+        "Added successfully in the organization"
       )
     );
 });

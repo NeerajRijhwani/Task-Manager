@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import Organization from "./organization.models.js";
-import Project from "./project.model.js"
+import {Organization} from "./organization.models.js";
+import {Project} from "./project.model.js"
 const todoSchema = new Schema(
   {
     project_id: {
