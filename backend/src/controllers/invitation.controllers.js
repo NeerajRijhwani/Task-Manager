@@ -6,22 +6,26 @@ import { Organization } from "../models/organization.models.js";
 import { Invitation } from "../models/invitation.models.js";
 
 const createInvitation = AsyncHandler(async (req, res) => {
-  const { inviteeEmail, to, role } = req.body;
-  const userRegistered = true;
+  let { inviteeEmail, to, role } = req.body;
+  let userRegistered = true;
   if (inviteeEmail == "" || to == "" || role == "") {
     throw new ApiError(400, "All fields are required");
   }
-  const invitee =await User.findById(to);
+  const invitee =await User.findOne({_id:to,email:inviteeEmail});
   if (!invitee) {
-    to = "";
+    console.log("User not exists")
+    to = null;
     userRegistered = false;
   }
+  console.log(req.org._id)
   const invitation =await Invitation.create({
     organization_id: req.org._id,
     inviteeEmail,
     to,
     from: req.user._id,
+    role:role
   });
+  
   if (!invitation) {
     throw new ApiError(400, "Unable to create Invitation");
   }
@@ -65,10 +69,9 @@ const RejectInvitation=AsyncHandler(async(req,res)=>{
    }
 })
 
-export default {
+export {
   createInvitation,
   RejectInvitation,
   getsentInvites,
   getrecieveInvites,
-
 }

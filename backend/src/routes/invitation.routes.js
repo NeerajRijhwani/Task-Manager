@@ -13,14 +13,16 @@ import {
 const router = Router();
 
 router
-  .route("/invitation")
+  .route("/:_id")
   .post(verifyJWT, verifyAuthorization, createInvitation);
 router
-  .route("/sentinvitation")
+  .route("/sentinvitation/:_id")
   .get(verifyJWT, verifyAuthorization, getsentInvites);
 router
   .route("/receiveinvitation")
-  .get(verifyJWT, verifyAuthorization, getrecieveInvites);
+  .get(verifyJWT, getrecieveInvites);
 router
-  .route("/rejectinvitation")
+  .route("/rejectinvitation/:_id")
   .post(verifyJWT, verifyAuthorization, RejectInvitation);
+
+  export default router

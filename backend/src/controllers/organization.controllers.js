@@ -168,10 +168,10 @@ const DeleteOrganization = TransactionHandler(
     );
     const projectids = projects.map((p) => p._id);
     const deletedprojects = await Project.deleteMany({
-      _id: { $in: { projectids } },
+      _id: { $in: projectids  },
     }).session(session);
     const deletedtasks = await Todo.deleteMany({
-      project_id: { $in: { projectids } },
+      project_id: { $in: projectids  },
     }).session(session);
     const deletedorg =
       await Organization.findByIdAndDelete(orgid).session(session);
