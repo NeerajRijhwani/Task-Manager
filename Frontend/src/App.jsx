@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import "./App.css";
 import { Login } from "./pages/LoginPage.jsx";
 import { Register } from "./pages/Register.jsx";
+import { Dashboard } from "./pages/Dashboard.jsx";
 function CustomRoutes() {
   const element = useRoutes([
     {
@@ -12,6 +13,10 @@ function CustomRoutes() {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/dashboard",
+      element: <Dashboard />,
     },
   ]);
   return element;
